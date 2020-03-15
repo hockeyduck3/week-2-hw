@@ -21,10 +21,28 @@ function writePassword() {
       writePassword();
     } else {
         var upper = confirm('Would you like the password to have upper case letters?');
+
+        if (upper === true){
+          alert('Upper case letters will be added!');
+        } else {
+          alert('Upper case letters will not be added.');
+        }
     
-        var special = confirm('Would you like the password to include special characters?');
-    
-        var numbers = confirm('Finally, would you like the password to include numbers?');
+        var numbers = confirm('Would you like the password to include numbers?');
+
+        if (numbers === true){
+          alert('Numbers will be added!');
+        } else {
+          alert('Numbers will not be added.');
+        }
+
+        var special = confirm('Finally, would you like the password to include special characters?');
+
+        if (special === true){
+          alert('Special characters will be added!');
+        } else {
+          alert('Special characters will not be added.');
+        }
     
         var upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
