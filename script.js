@@ -8,34 +8,37 @@ function writePassword() {
   
   var length = prompt('How long would you like your password to be?');
 
-  var lower = confirm('Would you like the password to have lower case letters?');
+  if (length == null) {
+    return;
+  } else if (length < 8 || length > 128) {
+    alert('Please keep the password between 8 and 128 characters.');
+    writePassword();
+  } else {
+    var upper = confirm('Would you like the password to have upper case letters?');
 
-  var upper = confirm('Would you like the password to have upper case letters?');
+    var special = confirm('Would you like the password to include special characters?');
 
-  var special = confirm('Would you like the password to include special characters?');
+    var numbers = confirm('Finally, would you like the password to include numbers?');
 
-  var numbers = confirm('Finally, would you like the password to include numbers?');
+    var upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  var upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var lowerSet = "abcdefghijklmnopqrstuvwxyz";
 
-  var lowerSet = "abcdefghijklmnopqrstuvwxyz";
+    var specialSet = `!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`;
 
-  var specialSet = `!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`;
+    var numbersSet = '1234567890';
 
-  function passwordMaker() {
-    console.log(length);
-    for (var i = 0; i < length; i++) {
-      if (lower === true) {
-        password += (lowerSet.charAt(Math.floor(Math.random() * length)))
-      }
-      if (upper === true) {
-        password += (upperSet.charAt(Math.floor(Math.random() * length)))
-      }
-      if (special === true) {
-        password += (specialSet.charAt(Math.floor(Math.random() * length)))
-      }
-      if (numbers === true) {
-        password += (Math.floor(Math.random() * length))
+    if (upper === true) {
+      lowerSet = lowerSet.concat(upperSet);
+    } if (special === true) {
+      lowerSet = lowerSet.concat(specialSet);
+    } if (numbers === true ) {
+      lowerSet = lowerSet.concat(numbersSet);
+    }
+
+    function passwordMaker() {
+      for (var i = 0; i < length; i++) {
+        password += (lowerSet.charAt(Math.floor(Math.random() * lowerSet.length) + 1));
       }
     }
   }
