@@ -43,7 +43,7 @@ function writePassword() {
     }
   }
   passwordMaker();
-  console.log(password);
+
   // var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
