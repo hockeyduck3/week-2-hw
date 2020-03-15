@@ -20,6 +20,14 @@ function writePassword() {
       alert("Please make sure you're typing in a number.")
       writePassword();
     } else {
+        var lower = confirm('Would you like the password to have lower case letters?');
+
+        if (lower === true){
+          alert('lower case letters will be added!');
+        } else {
+          alert('lower case letters will not be added.');
+        }
+
         var upper = confirm('Would you like the password to have upper case letters?');
 
         if (upper === true){
@@ -43,26 +51,35 @@ function writePassword() {
         } else {
           alert('Special characters will not be added.');
         }
+
+        if (lower === false && upper === false && numbers === false && special === false) {
+          alert('Please choose at least one character for your password.');
+          writePassword();
+        }
     
         var upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
         var lowerSet = "abcdefghijklmnopqrstuvwxyz";
     
-        var specialSet = `!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`;
+        var specialSet = `!@#$%^&*(){}[]=<>/,.`;
     
         var numbersSet = '1234567890';
     
-        if (upper === true) {
-          lowerSet = lowerSet.concat(upperSet);
+        var characters = '';
+
+        if (lower === true){
+          characters = characters.concat(lowerSet);
+        } if (upper === true) {
+          characters = characters.concat(upperSet);
         } if (special === true) {
-          lowerSet = lowerSet.concat(specialSet);
+          characters = characters.concat(specialSet);
         } if (numbers === true ) {
-          lowerSet = lowerSet.concat(numbersSet);
+          characters = characters.concat(numbersSet);
         }
     
         function passwordMaker() {
           for (var i = 0; i < length; i++) {
-            password += (lowerSet.charAt(Math.floor(Math.random() * lowerSet.length)));
+            password += (characters.charAt(Math.floor(Math.random() * characters.length)));
           }
         }
       }
