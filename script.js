@@ -73,7 +73,7 @@ function writePassword() {
     
         var lowerSet = "abcdefghijklmnopqrstuvwxyz";
     
-        var specialSet = `!@#$%^&*(){}=<>/,.`;
+        var specialSet = `!@#$%^&*(),.?":{}|<>`;
     
         var numbersSet = '1234567890';
     
@@ -146,7 +146,7 @@ function writePassword() {
 
     if (special) {
       // Just in case if the password does not have any special characters even though special = true.
-      if (password.match(/[!@#$%^&*(){}=<>/,.]/) == null) {
+      if (password.match(/[!@#$%^&*(),.?":{}|<>]/) == null) {
         console.log(`${password} did not include a special character`);
         password = '';
         passwordMaker();
