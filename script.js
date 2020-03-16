@@ -112,42 +112,50 @@ function writePassword() {
   
   passwordMaker();
 
-  // Just in case if the password does not meet the met criteria these if statements should rerun passwordMaker until a password meets the criteria.
-  if (lower) {
-    // Just in case if the password does not have a lowercase letter even though lower = true.
-    if (password.match(/[a-z]/) == null) {
-      console.log(`${password} did not include a lowercase letter`);
-      password = '';
-      passwordMaker();
+  function passwordChecker() {
+    // Just in case if the password does not meet the met criteria these if statements should rerun passwordMaker until a password meets the criteria.
+    if (lower) {
+      // Just in case if the password does not have a lowercase letter even though lower = true.
+      if (password.match(/[a-z]/) == null) {
+        console.log(`${password} did not include a lowercase letter`);
+        password = '';
+        passwordMaker();
+        passwordChecker();
+      }
+    }
+
+    if (upper) {
+      // Just in case if the password does not have a uppercase letter even though upper = true.
+      if (password.match(/[A-Z]/) == null) {
+        console.log(`${password} did not include an uppercase letter`);
+        password = '';
+        passwordMaker();
+        passwordChecker();
+      }
+    }
+
+    if (numbers) {
+      // Just in case if the password does not have any numbers even though number = true.
+      if (password.match(/[0-9]/) == null) {
+        console.log(`${password} did not include a number`);
+        password = '';
+        passwordMaker();
+        passwordChecker();
+      }
+    }
+
+    if (special) {
+      // Just in case if the password does not have any special characters even though special = true.
+      if (password.match(/[!@#$%^&*(){}=<>/,.]/) == null) {
+        console.log(`${password} did not include a special character`);
+        password = '';
+        passwordMaker();
+        passwordChecker();
+      }
     }
   }
 
-  if (upper) {
-    // Just in case if the password does not have a uppercase letter even though upper = true.
-    if (password.match(/[A-Z]/) == null) {
-      console.log(`${password} did not include an uppercase letter`);
-      password = '';
-      passwordMaker();
-    }
-  }
-
-  if (numbers) {
-    // Just in case if the password does not have any numbers even though number = true.
-    if (password.match(/[0-9]/) == null) {
-      console.log(`${password} did not include a number`);
-      password = '';
-      passwordMaker();
-    }
-  }
-
-  if (special) {
-    // Just in case if the password does not have any special characters even though special = true.
-    if (password.match(/[!@#$%^&*(){}=<>/,.]/) == null) {
-      console.log(`${password} did not include a special character`);
-      password = '';
-      passwordMaker();
-    }
-  }
+  passwordChecker();
 
   var passwordText = document.querySelector("#password");
 
