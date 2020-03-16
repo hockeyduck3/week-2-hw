@@ -3,8 +3,6 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-
-  var password = '';
   
   var length = prompt('How long would you like your password to be?');
 
@@ -68,12 +66,14 @@ function writePassword() {
           alert('Please choose at least one character for your password.');
           writePassword();
         }
+
+        var password = '';
     
         var upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
         var lowerSet = "abcdefghijklmnopqrstuvwxyz";
     
-        var specialSet = `!@#$%^&*(){}[]=<>/,.`;
+        var specialSet = `!@#$%^&*(){}=<>/,.`;
     
         var numbersSet = '1234567890';
     
@@ -111,6 +111,43 @@ function writePassword() {
 
   
   passwordMaker();
+
+  // Just in case if the password does not meet the met criteria these if statements should rerun passwordMaker until a password meets the criteria.
+  if (lower) {
+    // Just in case if the password does not have a lowercase letter even though lower = true.
+    if (password.match(/[a-z]/) == null) {
+      console.log(`${password} did not include a lowercase letter`);
+      password = '';
+      passwordMaker();
+    }
+  }
+
+  if (upper) {
+    // Just in case if the password does not have a uppercase letter even though upper = true.
+    if (password.match(/[A-Z]/) == null) {
+      console.log(`${password} did not include an uppercase letter`);
+      password = '';
+      passwordMaker();
+    }
+  }
+
+  if (numbers) {
+    // Just in case if the password does not have any numbers even though number = true.
+    if (password.match(/[0-9]/) == null) {
+      console.log(`${password} did not include a number`);
+      password = '';
+      passwordMaker();
+    }
+  }
+
+  if (special) {
+    // Just in case if the password does not have any special characters even though special = true.
+    if (password.match(/[!@#$%^&*(){}=<>/,.]/) == null) {
+      console.log(`${password} did not include a special character`);
+      password = '';
+      passwordMaker();
+    }
+  }
 
   var passwordText = document.querySelector("#password");
 
