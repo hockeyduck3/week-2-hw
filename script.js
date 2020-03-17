@@ -10,11 +10,13 @@ function writePassword() {
   if (length == null || length === '') {
     return;
   }
+
   // If the user didn't hit cancel, then this will check and see if the user's input is between 8 and 128 characters and will alert them if it's not.
   else if (length < 8 || length > 128) {
     alert('Please keep the password between 8 and 128 characters.');
     writePassword();
-  } 
+  }
+   
   // If the user's input is between 8 and 128 characters, then it will change their input into a number and check to see if it is a number or NaN. If it's NaN then the user will be alerted.
   else {
     length = parseInt(length);
