@@ -30,7 +30,7 @@ function writePassword() {
         var lower = confirm('Would you like the password to have lower case letters?');
 
         // This will alert the user whether or not lowercase letters will be used depending on their answer to the confirm above.
-        if (lower === true){
+        if (lower){
           alert('lower case letters will be added!');
         } else {
           alert('lower case letters will not be added.');
@@ -39,7 +39,7 @@ function writePassword() {
         var upper = confirm('Would you like the password to have upper case letters?');
 
         // This will alert the user whether or not uppercase letters will be used depending on their answer to the confirm above.
-        if (upper === true){
+        if (upper){
           alert('Upper case letters will be added!');
         } else {
           alert('Upper case letters will not be added.');
@@ -48,7 +48,7 @@ function writePassword() {
         var numbers = confirm('Would you like the password to include numbers?');
 
         // This will alert the user whether or not numbers will be used depending on their answer to the confirm above.
-        if (numbers === true){
+        if (numbers){
           alert('Numbers will be added!');
         } else {
           alert('Numbers will not be added.');
@@ -57,20 +57,22 @@ function writePassword() {
         var special = confirm('Finally, would you like the password to include special characters?');
 
         // This will alert the user whether or not special characters will be used depending on their answer to the confirm above.
-        if (special === true){
+        if (special){
           alert('Special characters will be added!');
         } else {
           alert('Special characters will not be added.');
         }
 
-        // If the user clicks cancel on all of the confirms, then they're alerted to choose at least one category and the function starts again.
+        // If the user clicks cancel on all of the confirms, then they're alerted to choose at least one category and the function writePassword() will start again.
         if (lower === false && upper === false && numbers === false && special === false) {
           alert('Please choose at least one character for your password.');
           writePassword();
         }
 
+        // password starts as an empty string but will get added onto later.
         var password = '';
     
+        // All the variables needed to make the password, depending on the user's criteria.
         var upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
         var lowerSet = "abcdefghijklmnopqrstuvwxyz";
@@ -79,30 +81,30 @@ function writePassword() {
     
         var numbersSet = '1234567890';
     
-        // Empty string that will be used for the password.
+        // Empty string that will be used for the characters that'll make up the password.
         var characters = '';
 
-        // If the user clicks ok on lower, then lowerSet will be added to characters.
-        if (lower === true){
+        // If the user clicks ok on lower, then lowerSet will be added to the empty string characters.
+        if (lower){
           characters = characters.concat(lowerSet);
         }
 
         // If the user clicks ok on upper, then upperSet will be added to characters.
-        if (upper === true) {
+        if (upper) {
           characters = characters.concat(upperSet);
         }
 
         // If the user clicks ok on numbers, then numbersSet will be added to characters.
-        if (numbers === true ) {
+        if (numbers) {
           characters = characters.concat(numbersSet);
         }
 
         // If the user clicks ok on special, then specialSet will be added to characters.
-        if (special === true) {
+        if (special) {
           characters = characters.concat(specialSet);
         }
     
-        // This function will then take the string of characters and randomly pick characters from that string and at it to password.
+        // This function will then take the string of characters and randomly pick from that string using charAt and Math.random, then from that string it will add it to the empty string of password.
         function passwordMaker() {
           for (var i = 0; i < length; i++) {
             password += (characters.charAt(Math.floor(Math.random() * characters.length)));
@@ -111,11 +113,10 @@ function writePassword() {
       }
     }
 
-  
   passwordMaker();
 
+  // Just in case if the password does not meet the met criteria this function with these four if statements should rerun passwordMaker until a password meets the user's criteria.
   function passwordChecker() {
-    // Just in case if the password does not meet the met criteria these if statements should rerun passwordMaker until a password meets the criteria.
     if (lower) {
       // Just in case if the password does not have a lowercase letter even though lower = true.
       if (password.match(/[a-z]/) == null) {
